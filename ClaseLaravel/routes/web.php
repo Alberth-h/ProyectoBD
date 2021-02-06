@@ -11,39 +11,26 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-
 */
-/*
+
 Route::get('/', function () {
     return view('welcome');
 });
-*/
 
-/*
-Route::get('/', function () {
-    return 'aa sos tu mi oana';
-});
-*/
+Route::get('notas', function(){
+    $notas = [
+        "Primera Nota",
+        "Segunda Nota",
+        "Tercera Nota",
+        "Cuarta Nota",
+    ];
+    return view('notas', ['notas' => $notas]);
+})->name('notas.index');
 
-/*
-Route::get('/', function () {
-    return [
-        'Clases' =>[
-            'Instalacion de laravel',
-            'Rutas Basicas de laravel',
-            'Controladores de laravel',
-            ]
-        ];
-});
-*/
-Route::get('clases', function () {
-    return 'Aqui ese listarian todas las clases';
+Route::get('agregar', function(){
+    return view('agregar');
 });
 
-Route::get('clases/crear', function () {
-    return 'Aqui se crean todas las clases';
-});
-
-Route::get('clases/{id}/editar', function ($id) {
-    return 'Aqui se edita la clase con id: ' .$id;
-});
+Route::get('notas/{id}/editar', function($id){
+    return 'Aqui se van a editar las notas' .$id;
+})->name('notas.edit');

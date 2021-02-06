@@ -14,7 +14,7 @@
                     </div>
 
                     <footer class="card-footer">
-                        <a class="action-link action-edit">
+                        <a href="{{ route('notas.edit', ['id' => $loop->iteration]) }}" class="action-link action-edit">
                             <i class="icon icon-pen"></i>
                         </a>
                         <a class="action-link action-delete">
@@ -23,7 +23,7 @@
                     </footer>
                 </div>
                 @empty
-                    <p>No hay elementos disponodes <br/><a href="/agregar">Agregar una nota</a></p>
+                    <p>No hay elementos disponible s <br/><a href="/agregar">Agregar una nota</a></p>
                 @endforelse
 
                     <!--inicia tarjeta-->
