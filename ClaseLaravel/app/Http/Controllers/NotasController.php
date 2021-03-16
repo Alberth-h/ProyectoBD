@@ -7,6 +7,10 @@ use App\Models\Notas;
 
 class NotasController extends Controller
 {
+    public function raiz(){
+        return view('welcome');
+    }
+
     public function index(){
         //DB::table('notas')->get();
         $notas = Notas::all();
@@ -17,7 +21,7 @@ class NotasController extends Controller
         return view('agregar');
     }
 
-    public function crear(Request $request){
+    public function store(Request $request){
         Notas::create([
             'titulo' => $request->input('title'),
             'contenido' => $request->input('content'),
@@ -26,11 +30,19 @@ class NotasController extends Controller
         return redirect('/notas');
     }
 
-    public function editar ($id){
+    public function edit($id){
         //DB::table('notas')->where('id', $id)->first();
         $notas = Notas::find($id);
         
         return view('editar', ['notas' => $notas]);
         //return 'Aqui se van a editar las notas' .$id;
+    }
+
+    public function update(Notas $notas, Request $request){
+        $notas->update([
+            'titulo' => $request->input('title'),
+            'contenido' => $request->input('content'),
+        ]);
+        return redirect('/notas');
     }
 }
